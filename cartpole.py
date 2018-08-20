@@ -6,29 +6,32 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
 
+
 from scores.score_logger import ScoreLogger
 
 ENV_NAME = "CartPole-v1"
 
-GAMMA = 0.99
+GAMMA = 0.95
 LEARNING_RATE = 0.001
-BATCH_SIZE = 32
+
+MEMORY_SIZE = 100000
+BATCH_SIZE = 50
 
 EXPLORATION_MAX = 1.0
 EXPLORATION_MIN = 0.01
 EXPLORATION_DECAY = 0.995
 
 
-class DQNAgent:
+class DQNSolver:
 
     def __init__(self, observation_space, action_space):
         self.exploration_rate = EXPLORATION_MAX
 
         self.action_space = action_space
-        self.memory = deque(maxlen=10000)
+        self.memory = deque(maxlen=MEMORY_SIZE)
 
         self.model = Sequential()
-        self.model.add(Dense(24, input_dim=observation_space, activation="relu"))
+        self.model.add(Dense(24, input_shape=(observation_space,), activation="relu"))
         self.model.add(Dense(24, activation="relu"))
         self.model.add(Dense(self.action_space, activation="linear"))
         self.model.compile(loss="mse", optimizer=Adam(lr=LEARNING_RATE))
@@ -43,7 +46,7 @@ class DQNAgent:
         return np.argmax(q_values[0])
 
     def experience_replay(self):
-        if len(dqn_agent.memory) < BATCH_SIZE:
+        if len(self.memory) < BATCH_SIZE:
             return
         batch = random.sample(self.memory, BATCH_SIZE)
         for state, action, reward, state_next, terminal in batch:
@@ -57,30 +60,33 @@ class DQNAgent:
         self.exploration_rate = max(EXPLORATION_MIN, self.exploration_rate)
 
 
-if __name__ == "__main__":
+def cartpole():
     env = gym.make(ENV_NAME)
-    score_logger = ScoreLogger()
+    score_logger = ScoreLogger(ENV_NAME)
     observation_space = env.observation_space.shape[0]
     action_space = env.action_space.n
-    dqn_agent = DQNAgent(observation_space, action_space)
-    terminal = False
+    dqn_solver = DQNSolver(observation_space, action_space)
     run = 0
     while True:
+        run += 1
         state = env.reset()
         state = np.reshape(state, [1, observation_space])
         step = 0
         while True:
+            step += 1
             #env.render()
-            action = dqn_agent.act(state)
+            action = dqn_solver.act(state)
             state_next, reward, terminal, info = env.step(action)
             reward = reward if not terminal else -reward
             state_next = np.reshape(state_next, [1, observation_space])
-            dqn_agent.remember(state, action, reward, state_next, terminal)
+            dqn_solver.remember(state, action, reward, state_next, terminal)
             state = state_next
             if terminal:
-                print "Run: " + str(run) + ", exploration: " + str(dqn_agent.exploration_rate) + ", score: " + str(step)
+                print "Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step)
                 score_logger.add_score(step, run)
                 break
-            dqn_agent.experience_replay()
-            step += 1
-        run += 1
+            dqn_solver.experience_replay()
+
+
+if __name__ == "__main__":
+    cartpole()
