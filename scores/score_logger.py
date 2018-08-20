@@ -19,16 +19,6 @@ class ScoreLogger:
         self.scores = deque(maxlen=CONSECUTIVE_RUNS_TO_SOLVE)
         self.env_name = env_name
 
-        self._save_png(input_path=SOLVED_CSV_PATH,
-                       output_path=SOLVED_PNG_PATH,
-                       x_label="trials",
-                       y_label="steps before solve",
-                       average_of_n_last=None,
-                       show_goal=False,
-                       show_trend=False,
-                       show_legend=False)
-        exit()
-
         if os.path.exists(SCORES_PNG_PATH):
             os.remove(SCORES_PNG_PATH)
         if os.path.exists(SCORES_CSV_PATH):

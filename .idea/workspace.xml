@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb4288ac-4caa-405e-a873-79ed821548ec" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cartpole.py" beforeDir="false" afterPath="$PROJECT_DIR$/cartpole.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scores/score_logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/scores/score_logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scores/scores.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scores/scores.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scores/scores.png" beforeDir="false" afterPath="$PROJECT_DIR$/scores/scores.png" afterDir="false" />
@@ -33,8 +30,8 @@
       <file leaf-file-name="score_logger.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scores/score_logger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            <state relative-caret-position="433">
+              <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -93,8 +90,8 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1920" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="956" />
     <option name="height" value="1200" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -155,7 +152,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
+    <frame x="0" y="0" width="956" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -165,7 +162,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12034079" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24726477" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3288889" />
@@ -428,8 +425,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scores/score_logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        <state relative-caret-position="433">
+          <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
