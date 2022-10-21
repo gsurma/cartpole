@@ -34,7 +34,7 @@ class DQNSolver:
         self.model.add(Dense(24, input_shape=(observation_space,), activation="relu"))
         self.model.add(Dense(24, activation="relu"))
         self.model.add(Dense(self.action_space, activation="linear"))
-        self.model.compile(loss="mse", optimizer=Adam(lr=LEARNING_RATE))
+        self.model.compile(loss="mse", optimizer=Adam(learning_rate=LEARNING_RATE))
 
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
@@ -61,7 +61,7 @@ class DQNSolver:
 
 
 def cartpole():
-    env = gym.make(ENV_NAME)
+    env = gym.make(ENV_NAME) #render_mode='human'
     score_logger = ScoreLogger(ENV_NAME)
     observation_space = env.observation_space.shape[0]
     action_space = env.action_space.n
@@ -69,20 +69,20 @@ def cartpole():
     run = 0
     while True:
         run += 1
-        state = env.reset()
+        state, info = env.reset()
         state = np.reshape(state, [1, observation_space])
         step = 0
         while True:
             step += 1
             #env.render()
             action = dqn_solver.act(state)
-            state_next, reward, terminal, info = env.step(action)
+            state_next, reward, terminal, truncated, info = env.step(action)
             reward = reward if not terminal else -reward
             state_next = np.reshape(state_next, [1, observation_space])
             dqn_solver.remember(state, action, reward, state_next, terminal)
             state = state_next
             if terminal:
-                print "Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step)
+                print( "Run: " + str(run) + ", exploration: " + str(dqn_solver.exploration_rate) + ", score: " + str(step))
                 score_logger.add_score(step, run)
                 break
             dqn_solver.experience_replay()
