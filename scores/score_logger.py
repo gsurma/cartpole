@@ -38,10 +38,10 @@ class ScoreLogger:
                        show_legend=True)
         self.scores.append(score)
         mean_score = mean(self.scores)
-        print "Scores: (min: " + str(min(self.scores)) + ", avg: " + str(mean_score) + ", max: " + str(max(self.scores)) + ")\n"
+        print ("Scores: (min: " + str(min(self.scores)) + ", avg: " + str(mean_score) + ", max: " + str(max(self.scores)) + ")\n")
         if mean_score >= AVERAGE_SCORE_TO_SOLVE and len(self.scores) >= CONSECUTIVE_RUNS_TO_SOLVE:
             solve_score = run-CONSECUTIVE_RUNS_TO_SOLVE
-            print "Solved in " + str(solve_score) + " runs, " + str(run) + " total runs."
+            print ("Solved in " + str(solve_score) + " runs, " + str(run) + " total runs.")
             self._save_csv(SOLVED_CSV_PATH, solve_score)
             self._save_png(input_path=SOLVED_CSV_PATH,
                            output_path=SOLVED_PNG_PATH,
@@ -60,8 +60,14 @@ class ScoreLogger:
             reader = csv.reader(scores)
             data = list(reader)
             for i in range(0, len(data)):
-                x.append(int(i))
-                y.append(int(data[i][0]))
+                # print(i)
+                # print(len(data))
+                print(data)
+                if(len(data[i]) > 0):
+                    x.append(int(i))
+                    y.append(int(data[i][0]))
+                else:
+                    print("Missing data")
 
         plt.subplots()
         plt.plot(x, y, label="score per run")
